@@ -38,7 +38,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
 
-      .addCase(getLogout.fulfilled, (state) => {
+      .addCase(getLogout.fulfilled, state => {
         state.loading = false;
         state.user = {};
         state.token = null;
@@ -46,11 +46,15 @@ const authSlice = createSlice({
       })
 
       .addCase(getRefresh.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.token = payload.token;
+        state.user = payload.user;
       })
 
       .addMatcher(actions => actions.type.endsWith('/pending'), handlePending)
-      .addMatcher(actions => actions.type.endsWith('/rejected'), handleRejected);
+      .addMatcher(
+        actions => actions.type.endsWith('/rejected'),
+        handleRejected
+      );
   },
 });
 
