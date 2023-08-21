@@ -55,9 +55,13 @@ export const getLogout = createAsyncThunk('auth/getLogout', async user => {
 });
 
 export const getRefresh = createAsyncThunk('auth/Refresh', async () => {
-  const persistedToken = localStorage.getItem('token');
-  persistedToken && token.set(JSON.parse(persistedToken));
-  const { data } = await axios.get('/users/current');
-  localStorage.setItem('token', JSON.stringify(data.token));
-  return data;
+  try {
+    const persistedToken = localStorage.getItem('token');
+    persistedToken && token.set(JSON.parse(persistedToken));
+    const { data } = await axios.get('/users/current', 'Authorization');
+    localStorage.setItem('token', JSON.stringify(data.token));
+    return data;
+  } catch (error) {
+    return '';
+  }
 });
