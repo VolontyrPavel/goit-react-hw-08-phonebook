@@ -1,32 +1,57 @@
-import { ContactForm } from './ContactForm';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList';
+import { Suspense, lazy } from 'react';
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectLoading, selectError, selectContacts } from 'redux/selectors';
-import {fetchContacts} from 'redux/operations'
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import PrivateGuard from '../guards/PrivateGuard';
+import PublicGuards from '../guards/PublicGuards';
+
+import { selectLoading, selectError } from 'redux/selectors';
+
+const Layout = lazy(() => import('../page/Layout'));
+const Home = lazy(() => import('../page/Home'));
+const Register = lazy(() => import('../page/Register'));
+const Login = lazy(() => import('../page/Login'));
+const Contacts = lazy(() => import('../page/Contacts'));
 
 export const App = () => {
-  const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const contacts = useSelector(selectContacts);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
+    <Suspense>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {contacts.length === 0 && (<p>Contacts no found</p>)}
-      <ContactList />
-    </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <PublicGuards>
+                <Register />
+              </PublicGuards>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicGuards>
+                <Login />
+              </PublicGuards>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateGuard>
+                <Contacts />
+              </PrivateGuard>
+            }
+          />
+        </Route>
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </Suspense>
   );
 };

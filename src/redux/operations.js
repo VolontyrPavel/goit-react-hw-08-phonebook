@@ -1,7 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://64d903cae947d30a2609d513.mockapi.io';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
   const { data } = await axios.get('/contacts');
@@ -23,3 +32,32 @@ export const deleteContact = createAsyncThunk(
     return data;
   }
 );
+
+export const getRegister = createAsyncThunk('auth/getRegister', async user => {
+  const { data } = await axios.post('/users/signup', user);
+  token.set(data.token);
+  localStorage.setItem('token', JSON.stringify(data.token));
+  return data;
+});
+
+export const getLogin = createAsyncThunk('auth/getLogin', async user => {
+  const { data } = await axios.post('/users/login', user);
+  token.set(data.token);
+  localStorage.setItem('token', JSON.stringify(data.token));
+  return data;
+});
+
+export const getLogout = createAsyncThunk('auth/getLogout', async user => {
+  const { data } = await axios.post('/users/logout', user);
+  token.unset();
+  localStorage.removeItem('token');
+  return data;
+});
+
+export const getRefresh = createAsyncThunk('auth/Refresh', async () => {
+  const persistedToken = localStorage.getItem('token');
+  persistedToken && token.set(JSON.parse(persistedToken));
+  const { data } = await axios.get('/users/current');
+  localStorage.setItem('token', JSON.stringify(data.token));
+  return data;
+});

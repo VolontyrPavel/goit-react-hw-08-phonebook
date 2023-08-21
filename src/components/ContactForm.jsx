@@ -30,7 +30,7 @@ export const ContactForm = () => {
     e.preventDefault();
     const contact = {
       name: name,
-      phone: phone,
+      number: phone,
     };
     const findedContact = contactsInStore.find(
       contactInStore =>

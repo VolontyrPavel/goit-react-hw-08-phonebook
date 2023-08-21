@@ -8,10 +8,10 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   return (
     <ul>
-      {contacts.map(({ id, name, phone }) => (
+      {contacts.map(({ id, name, number }) => (
         <li key={id}>
           <p>
-            {name}: {phone}
+            {name}: {number}
           </p>
           <button type="button" onClick={() => dispatch(deleteContact(id))}>
             Delete
