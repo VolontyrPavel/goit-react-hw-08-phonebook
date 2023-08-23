@@ -46,8 +46,8 @@ const authSlice = createSlice({
       })
 
       .addCase(getRefresh.fulfilled, (state, { payload }) => {
-        state.token = payload.token;
         state.user = payload.user;
+        state.isLoggedIn = true;
       })
 
       .addMatcher(actions => actions.type.endsWith('/pending'), handlePending)

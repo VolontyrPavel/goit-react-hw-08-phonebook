@@ -54,14 +54,21 @@ export const getLogout = createAsyncThunk('auth/getLogout', async user => {
   return data;
 });
 
-export const getRefresh = createAsyncThunk('auth/Refresh', async () => {
-  try {
-    const persistedToken = localStorage.getItem('token');
-    persistedToken && token.set(JSON.parse(persistedToken))
-    const { data } = await axios.get('/users/current');
-    localStorage.setItem('token', JSON.stringify(persistedToken));
-    return data;
-  } catch (error) {
-    return '';
+export const getRefresh = createAsyncThunk(
+  'auth/getRefresh',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    console.log(state);
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue(777);
+    }
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      return error.messege('');
+    }
   }
-});
+);
