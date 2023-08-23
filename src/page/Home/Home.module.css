@@ -1,0 +1,26 @@
+.hero {
+   
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    max-width: 100%;
+    
+    background-image: linear-gradient( 
+    to right, 
+    rgba(46, 47, 66, 0.7), 
+    rgba(46, 47, 66, 0.7));
+
+    border-radius: 10px;
+}
+
+.title {
+    margin-right: auto;
+    margin-left: auto;
+
+    color: whitesmoke;
+    font-size: 36px;
+    line-height: 1.11;
+    letter-spacing: 0.02em;
+    text-align: center;
+}

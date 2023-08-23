@@ -9,7 +9,7 @@ import PublicGuards from '../guards/PublicGuards';
 import { selectLoading, selectError } from 'redux/selectors';
 
 const Layout = lazy(() => import('../page/Layout'));
-const Home = lazy(() => import('../page/Home'));
+const Home = lazy(() => import('../page/Home/Home'));
 const Register = lazy(() => import('../page/Register'));
 const Login = lazy(() => import('../page/Login'));
 const Contacts = lazy(() => import('../page/Contacts'));

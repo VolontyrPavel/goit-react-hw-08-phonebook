@@ -1,19 +1,17 @@
 import { Suspense, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectIsToken } from '../redux/selectors';
+import { useDispatch } from 'react-redux';
 
 import { getRefresh } from '../redux/operations';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Header';
 
 const Layout = () => {
-  const isAuth = useSelector(selectIsToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    !isAuth && dispatch(getRefresh());
-  }, [dispatch, isAuth]);
+    dispatch(getRefresh());
+  }, [dispatch]);
 
   return (
     <>
