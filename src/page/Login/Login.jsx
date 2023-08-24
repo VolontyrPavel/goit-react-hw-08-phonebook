@@ -60,7 +60,7 @@ const Login = () => {
           onChange={handleChange}
           value={pass}
         />
-        <button type="submit" name="next" className={css.button} value="Next">
+        <button type="submit" name="next" className={css.button} >
           Login
         </button>
       </form>

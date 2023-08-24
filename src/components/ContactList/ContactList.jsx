@@ -8,16 +8,14 @@ export const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
   const dispatch = useDispatch();
   return (
-    <ul>
+    <ul className={css.ul}>
       {contacts.map(({ id, name, number }) => (
         <li key={id} className={css.contact}>
-          <div className={css.item}>
-            <h3 className={css.name}>{name}</h3>
-            <span className={css.number}>{number}</span>
-            <button type="button" onClick={() => dispatch(deleteContact(id))}>
-              Delete
-            </button>
-          </div>
+          <h3 className={css.name}>{name}</h3>
+          <span className={css.number}>{number}</span>
+          <button type="button" onClick={() => dispatch(deleteContact(id))} className={css.button}>
+            Delete
+          </button>
         </li>
       ))}
     </ul>

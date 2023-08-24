@@ -75,7 +75,7 @@ const Register = () => {
           onChange={handleChange}
           value={pass}
         />
-        <button type="submit" name="next" className={css.button} value="Next">
+        <button type="submit" name="next" className={css.button} >
           Register
         </button>
       </form>

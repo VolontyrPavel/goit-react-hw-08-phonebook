@@ -2,46 +2,52 @@
   box-sizing: border-box;
 }
 
-.contact {
-    width: 300px;
-    text-align: center;
-    margin: 0 auto;
-    border-bottom: 2px solid #F5F5F5;
-    background: white;
-    transition: .3s ease-in;
-    list-style: none;
- }
+.ul {
+  list-style: none;
 
-.item {
-  background: #fafafa;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  row-gap: 72px;
+}
+
+.contact {
   padding: 15px 0;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+  background: rgb(230, 250, 200);
+  border-radius: 20px;
 }
 
 .name {
   font-size: 18px;
   font-weight: 400;
-  color: #444444;
   margin: 0 0 10px 0;
 }
 
 .number {
   font-size: 16px;
-  color: #fc5a5a;
+  color: red;
   display: block;
   margin-bottom: 12px;
 }
 
 .button {
+	width: 100px;
+	background: rgb(247, 99, 62);
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 10px 5px;
   text-decoration: none;
-  display: inline-block;
-  padding: 0 12px;
-  background: #cccccc;
-  color: white;
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 28px;
-  transition: 0.3s ease-in;
+  font-size: 14px;
 }
-.button:hover {
-  background: #fc5a5a;
+
+.button:hover, .button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
