@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { getRegister } from 'redux/operations';
 
-import css from './Register.module.css'
+import css from './Register.module.css';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -48,52 +48,39 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name
+    <div className={css.div}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <h2 className={css.title}>Create your account</h2>
         <input
+          className={css.input}
           type="name"
           name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          required
+          placeholder="Name"
           onChange={handleChange}
           value={name}
         />
-      </label>
-      <label>
-        E-mail
         <input
+          className={css.input}
           type="email"
           name="email"
-          required
+          placeholder="Email"
           onChange={handleChange}
           value={email}
         />
-      </label>
-      <label>
-        Password
         <input
+          className={css.input}
           type="password"
           name="pass"
-          required
+          placeholder="Password"
           onChange={handleChange}
           value={pass}
         />
-      </label>
-      <button type="submit">Сonfirm</button>
-    </form>
+        <button type="submit" name="next" className={css.button} value="Next">
+          Register
+        </button>
+      </form>
+    </div>
   );
 };
 
 export default Register;
-
-{/* <form onSubmit={handleSubmit}>
-    <h2 class="fs-title">Create your account</h2>
-    <input type="name" name="name" placeholder="Name"  onChange={handleChange}
-          value={name} />
-    <input type="email" name="email" placeholder="Email" onChange={handleChange}
-          value={email}/>
-    <input type="password" name="pass" placeholder="Password" onChange={handleChange}
-          value={pass}/>
-    <button type="submit" name="next" class="next action-button" value="Next" />Сonfirm</button>
-  </form> */}

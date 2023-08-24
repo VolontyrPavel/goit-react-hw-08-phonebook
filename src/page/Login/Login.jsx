@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { getLogin } from 'redux/operations';
 
+import css from './Login.module.css';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -39,29 +41,30 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        E-mail
+    <div className={css.div}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <h2 className={css.title}>log into your account</h2>
         <input
+          className={css.input}
           type="email"
           name="email"
-          required
+          placeholder="Email"
           onChange={handleChange}
           value={email}
         />
-      </label>
-      <label>
-        Password
         <input
+          className={css.input}
           type="password"
           name="pass"
-          required
+          placeholder="Password"
           onChange={handleChange}
           value={pass}
         />
-      </label>
-      <button type="submit">Сonfirm</button>
-    </form>
+        <button type="submit" name="next" className={css.button} value="Next">
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 

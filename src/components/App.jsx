@@ -11,7 +11,7 @@ import Layout from 'page/Layout';
 
 const Home = lazy(() => import('../page/Home/Home'));
 const Register = lazy(() => import('../page/Register/Register'));
-const Login = lazy(() => import('../page/Login'));
+const Login = lazy(() => import('../page/Login/Login'));
 const Contacts = lazy(() => import('../page/Contacts'));
 
 export const App = () => {
