@@ -7,7 +7,7 @@ const PublicGuards = ({ children }) => {
 	const isAuth = useSelector(selectIsToken)
 	const location = useLocation()
 
-	return !isAuth ? children : <Navigate to={location.state ?? '/'} />
+	return !isAuth ? children : <Navigate to={'/contacts'} />
 }
 
 export default PublicGuards

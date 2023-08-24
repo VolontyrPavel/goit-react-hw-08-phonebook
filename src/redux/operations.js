@@ -36,21 +36,18 @@ export const deleteContact = createAsyncThunk(
 export const getRegister = createAsyncThunk('auth/getRegister', async user => {
   const { data } = await axios.post('/users/signup', user);
   token.set(data.token);
-  localStorage.setItem('token', JSON.stringify(data.token));
   return data;
 });
 
 export const getLogin = createAsyncThunk('auth/getLogin', async user => {
   const { data } = await axios.post('/users/login', user);
   token.set(data.token);
-  localStorage.setItem('token', JSON.stringify(data.token));
   return data;
 });
 
 export const getLogout = createAsyncThunk('auth/getLogout', async user => {
   const { data } = await axios.post('/users/logout', user);
   token.unset();
-  localStorage.removeItem('token');
   return data;
 });
 

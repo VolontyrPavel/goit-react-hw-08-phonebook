@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { getRegister } from 'redux/operations';
 
+import css from './Register.module.css'
+
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -84,3 +86,14 @@ const Register = () => {
 };
 
 export default Register;
+
+{/* <form onSubmit={handleSubmit}>
+    <h2 class="fs-title">Create your account</h2>
+    <input type="name" name="name" placeholder="Name"  onChange={handleChange}
+          value={name} />
+    <input type="email" name="email" placeholder="Email" onChange={handleChange}
+          value={email}/>
+    <input type="password" name="pass" placeholder="Password" onChange={handleChange}
+          value={pass}/>
+    <button type="submit" name="next" class="next action-button" value="Next" />Сonfirm</button>
+  </form> */}
